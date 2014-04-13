@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SL314">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="GifServlet.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/GifServlet/GifServlet">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javachart.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/javachart/javachart">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cos.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/cos/cos">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="webmacro.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/webmacro/webmacro">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Acme.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/Acme/Acme">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ActionServlet.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/ActionServlet/ActionServlet">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ecs-1.4.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/ecs-1.4.1/ecs-1.4.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="SL314"/>
+        <property name="java-output-path" value="/SL314/build/classes"/>
+    </wb-module>
+</project-modules>
