@@ -2,8 +2,11 @@ package servlet_examples;
 
 import java.io.*;
 import java.sql.*;
+
+import javax.naming.Context;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import javax.sql.DataSource;
 
 public class DBGifReader extends HttpServlet {
 
@@ -42,13 +45,12 @@ public class DBGifReader extends HttpServlet {
 	}
 
 	public void init() throws ServletException {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "user1", "u111");
-		} catch (ClassNotFoundException e) {
+		try { //¤É¯Å¬°¨Ï¥ÎConnection Pool
+			Context ctx = new javax.naming.InitialContext();
+			DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/TestDB");
+			con = ds.getConnection();
+		} catch (Exception e) {
 			throw new UnavailableException("Couldn't load JdbcOdbcDriver");
-		} catch (SQLException e) {
-			throw new UnavailableException("Couldn't get db connection");
 		}
 	}
 
