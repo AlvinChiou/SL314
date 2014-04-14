@@ -11,18 +11,21 @@ public class DBGifReader extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-
-		res.setContentType("image/gif");
+		res.setCharacterEncoding("Big5");
+		res.setContentType("image/jpg");
 		ServletOutputStream out = res.getOutputStream();
 
 		try {
+			String empno = req.getParameter("empno");
+			String picName = new String(empno.getBytes("ISO-8859-1"), "Big5");
+			
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(
-				"SELECT IMAGE FROM PICTURES WHERE PID = " + req.getParameter("PID"));
-
+					"SELECT picture FROM EMP_PHOTO WHERE EMPNO = '"+picName+"'");
+			
 			if (rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("image"));
-				byte[] buf = new byte[4 * 1024]; // 4K buffer
+				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("picture"));
+				byte[] buf = new byte[4 * 1024 * 1024]; // 4M buffer
 				int len;
 				while ((len = in.read(buf)) != -1) {
 					out.write(buf, 0, len);
@@ -40,8 +43,8 @@ public class DBGifReader extends HttpServlet {
 
 	public void init() throws ServletException {
 		try {
-			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-			con = DriverManager.getConnection("jdbc:odbc:orcl", "user1", "u111");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "user1", "u111");
 		} catch (ClassNotFoundException e) {
 			throw new UnavailableException("Couldn't load JdbcOdbcDriver");
 		} catch (SQLException e) {
