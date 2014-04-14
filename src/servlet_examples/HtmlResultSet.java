@@ -3,7 +3,7 @@ package servlet_examples;
 import java.sql.*;
 
 public class HtmlResultSet {
-
+	
   private ResultSet rs;
 
   public HtmlResultSet(ResultSet rs) {

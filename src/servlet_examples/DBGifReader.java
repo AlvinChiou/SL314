@@ -41,7 +41,7 @@ public class DBGifReader extends HttpServlet {
 	public void init() throws ServletException {
 		try {
 			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-			con = DriverManager.getConnection("jdbc:odbc:imagedb", "user", "passwd");
+			con = DriverManager.getConnection("jdbc:odbc:orcl", "user1", "u111");
 		} catch (ClassNotFoundException e) {
 			throw new UnavailableException("Couldn't load JdbcOdbcDriver");
 		} catch (SQLException e) {
